@@ -1,0 +1,47 @@
+ OL.statuses {
+        font-size: 12px;
+        color: black;
+        list-style-type: none;
+        position: relative;
+        text-align: left
+    }
+
+    OL.statuses > LI {
+        padding: 0 0 0.6em 0;
+        line-height: 1.1em;
+        border-bottom: #d2dada 1px dashed;
+        position: relative
+    }
+
+    OL.statuses LI {
+        position: relative
+    }
+
+    OL.statuses LI A {
+        color: #0084b4;
+        text-decoration: none
+    }
+
+    OL.statuses SPAN.status-body {
+        display: block;
+        min-height: 50px;
+        margin-left: 10px!important;margin-left:50px;
+        overflow: hidden;
+    }
+
+    OL.statuses SPAN.meta {
+        display: block;
+        font-size: 0.76em;
+        margin: 3px 0px 0px;
+        color: #999
+    }
+
+    OL.statuses .thumb {
+        margin: 0 10px 0 -40px!important;margin:10px 10px 0 -50px;
+        position: absolute;
+    }
+
+    OL.statuses .thumb IMG {
+        height: 40px;
+        width: 40px;
+    }

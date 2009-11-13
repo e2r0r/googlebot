@@ -47,10 +47,11 @@ class search:
                 gs = GoogleSearch("link.php?ref="+query.key.encode('utf-8'))
                 gs.results_per_page = 10
                 
-                # if query.has_key('start'):
-                #     gs.page = int(query.start)/gs.results_per_page 
-                # else:
-                gs.page = 1
+                if query.start:
+                    #return query.start
+                    gs.page = int(query.start)/gs.results_per_page 
+                else:
+                    gs.page = 1
                 
                 results = gs.get_results()
                 data = []
@@ -61,7 +62,10 @@ class search:
                     else:
                         url = res.url
                     data.append([res.title,url])
-                return data[0][0]
+                html = web.template.frender("template/newsearch.html")
+                html.globals['data'] = data
+                html.globals['key'] = query.key
+                return html()
             else:
                 raise web.seeother("/unavailable")
         else:
