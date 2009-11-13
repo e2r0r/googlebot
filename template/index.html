@@ -1,0 +1,138 @@
+<html><head>
+
+<title>Naga,Smart your click</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="/static/main.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" language="javascript" src="/static/tooltips.js"></script>
+<script>
+function _sq(u){
+    var q="",l="";
+    try{
+    q=document.getElementById("key").value;
+    l=window.top.location.href;;
+    }catch(e){}
+    if(q=="") {
+   	 window.top.location.href="/?t="+u;
+    }else {
+   	 window.top.location.href="/newsearch?t="+u+"&key="+uncodeURIComponent(q);
+    }
+}
+
+function grayout(val)
+{
+    document.getElementById ('MainDiv').style.display='';
+    document.getElementById ('MainDiv').style.visibility='visible';
+    document.getElementById ('MainDiv').style.position='absolute';
+
+    document.getElementById ('MainDiv').style.top='0px';
+    document.getElementById ('MainDiv').style.left='0px';
+    document.getElementById ('MainDiv').style.width= '100%';
+    document.getElementById ('MainDiv').style.height= '100%';
+
+    document.getElementById('MainDiv').style.backgroundColor = "Gray";
+    document.getElementById('MainDiv').style.filter = "alpha(opacity=60)";
+    document.getElementById('MainDiv').style.opacity = "0.6";
+
+    document.getElementById ('MainDiv2').style.display='';
+    document.getElementById ('MainDiv2').style.visibility='visible';
+    document.getElementById ('MainDiv2').style.position='absolute';
+
+    document.getElementById ('MainDiv2').style.top= GetHeight()/2 - 132;
+    document.getElementById ('MainDiv2').style.left=  GetWidth () / 2 - 217;
+    document.getElementById ('MainDiv2').style.width= '435';
+    document.getElementById ('MainDiv2').style.height= '293';
+
+    document.getElementById('MainDiv2').style.backgroundColor = "#dfcfdf";
+    document.getElementById('MainDiv2').style.filter = "alpha(opacity=100)";
+    document.getElementById('MainDiv2').style.opacity = "100";
+
+    document.getElementById ('MainFrame').style.display='';
+    document.getElementById ('MainFrame').style.visibility='visible';
+    document.getElementById ('MainFrame').style.position='absolute';
+
+	document.getElementById ('MainFrame').style.top='0px';
+        document.getElementById ('MainFrame').style.left='0px';
+        document.getElementById ('MainFrame').style.width='100%';
+        document.getElementById ('MainFrame').style.height='100%';
+	document.getElementById ('MainFrame').src="/demo" + val;
+//	document.all.MainFrame.src="/demo" + val;
+}
+function _share(r){
+	if (r == null || r == "undefined")return;
+	var t = encodeURIComponent(document.title);
+	var u = encodeURIComponent(window.top.location);
+	var s = "";
+	if (r == "twitter")s = "http://twitter.com/home?status="+t+" "+u;
+	else if (r == "facebook")s = "http://www.facebook.com/sharer.php?u="+u+"&t="+t;
+	else if (r == "digg")s = "http://digg.com/submit?url="+u+"&title="+t;
+	else if (r == "reddit")s = "http://reddit.com/submit?url="+u+"&title="+t;
+	else if (r == "delicious")s = "http://delicious.com/save?url="+u+"&title="+t;
+	else if (r == "mixx")s = "http://www.mixx.com/submit?page_url="+u;
+	else if (r == "su")s = "http://stumbleupon.com/submit?url="+window.top.location+"&title="+t;
+	else if (r == "technorati")s = "http://technorati.com/faves/songday?add="+u;
+	if (s != "")window.open(s);
+}
+function _f(){
+        document.getElementById("key").focus();
+}
+</script>
+<style>
+#swidth{
+	width:355px;
+}
+div#mylogo {
+	margin:50px 0 0 0;
+	text-align: center;
+}
+div#des {
+	font-weight: bold;
+	text-align: center;
+	margin:10px 0;
+}
+#bt {
+	margin-top:30px;
+	border:0px;
+	text-align: center;
+}
+#bt tr td {
+	text-align: center;
+	margin-top:30px;
+}
+#bt tr td a{
+	color:#0000FF;
+}
+</style>
+</head><body>
+
+<div id="MainDiv"></div>
+<div id="MainDiv2"><iframe id="MainFrame" height="0" width="0"></iframe></div>
+
+<div id="mylogo"><img src="/static/f_logo.gif" height="100" width="223"></div>
+<div id="des">Ideal Evolutionary (Sandbox) Search</div>
+<form name="form1" method="get" action="/newsearch">
+<table width="650" align="center" border="0" cellpadding="0" cellspacing="0">
+      <tbody><tr>
+        <td>&nbsp;</td>
+        <td height="20">$:name</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td width="20%">&nbsp;</td>
+        <td height="36" width="55%">
+          <input name="key" id="key" class="search" autocomplete="off" onkeyup="keywordsuggestion(key.value,'suggestionwnd', 'key', event)" type="text">
+        <script type="text/javascript">_f();</script>
+	  <input value="s" name="t" type="hidden">
+        </td>
+        <td style="padding-left: 15px;"><input src="/static/search_index.jpg" height="28" type="image" border="0"></td>
+      </tr>
+      <tr height="2">
+        <td></td>
+        <td><div id="suggestionwnd" name="suggestionwnd" style="position: absolute; left: 309px; top: 247px; right: 409px; bottom: 447px; visibility: hidden;"></div></td>
+        <td></td>
+      </tr>
+</tbody></table>
+</form>
+<center><table><tr> 
+    <td height="30" align="center">Copyright  &copy;2009 Naga Inc. All Rights Reserved.</td> 
+  </tr> </table></center>
+</body></html>
