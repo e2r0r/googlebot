@@ -47,7 +47,7 @@ class search:
                 gs = GoogleSearch("link.php?ref="+query.key.encode('utf-8'))
                 gs.results_per_page = 10
                 
-                if query.start:
+                if query.has_key('start'):
                     #return query.start
                     gs.page = int(query.start)/gs.results_per_page 
                 else:
@@ -59,12 +59,17 @@ class search:
                     match_obj = compile_obj.search(res.desc)
                     if match_obj:
                         url = match_obj.group(1)
+                        if url.find("http://") >0:
+                            url = url[url.find("http://"):len(url)]
+                        else:
+                            url = "http://"+url
                     else:
                         url = res.url
                     data.append([res.title,url])
                 html = web.template.frender("template/newsearch.html")
-                html.globals['data'] = data
-                html.globals['key'] = query.key
+                #html.globals['data'] = data
+                #html.globals['key'] = query.key
+                html = web.template.frender("template/newsearch.html",globals={'data':data,'key':query.key})
                 return html()
             else:
                 raise web.seeother("/unavailable")
