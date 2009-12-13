@@ -29,10 +29,12 @@ class index:
             guider = layout['s']
         else:
             raise web.seeother("/")
-        html = web.template.frender("template/index.html")
-        html.globals['name'] = guider
+        html = web.template.frender("template/index.html",globals={'sun':guider})
+        #return guider
+        #html._globals = {'sun':guider}
+        #html.globals['time'] = '1'
+    #    s=web.template.render("template/index.html",{"sun":guider})
         return html()
-
 
 class search:
     """
@@ -42,11 +44,11 @@ class search:
         query = web.input()
         if query and query.t and query.key:
             if query.t == 's':
-                rawstr = r"""://(\S*link.php\?ref=\w*)"""
+                rawstr = r"""p://(\S*link.php\?ref=\w*)"""
                 compile_obj = re.compile(rawstr)
                 gs = GoogleSearch("link.php?ref="+query.key.encode('utf-8'))
                 gs.results_per_page = 10
-                
+        
                 if query.has_key('start'):
                     #return query.start
                     gs.page = int(query.start)/gs.results_per_page 
@@ -59,17 +61,16 @@ class search:
                     match_obj = compile_obj.search(res.desc)
                     if match_obj:
                         url = match_obj.group(1)
-                        if url.find("http://") >0:
-                            url = url[url.find("http://"):len(url)]
+                        if url.find("http://") > 0:
+                            url  = url[url.find("http://"):len(url)]
                         else:
                             url = "http://"+url
                     else:
                         url = res.url
                     data.append([res.title,url])
-                html = web.template.frender("template/newsearch.html")
-                #html.globals['data'] = data
-                #html.globals['key'] = query.key
                 html = web.template.frender("template/newsearch.html",globals={'data':data,'key':query.key})
+#                html.globals['data'] = data
+#               html.globals['key'] = query.key
                 return html()
             else:
                 raise web.seeother("/unavailable")
